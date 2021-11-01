@@ -17,6 +17,9 @@ public protocol RichEditorOption {
     /// If `image` is nil, this will be used for display in the RichEditorToolbar.
     var title: String { get }
 
+    /// The tint color of the item
+    var tintColor: UIColor? { get }
+
     /// The action to be evoked when the action is tapped
     /// - parameter editor: The RichEditorToolbar that the RichEditorOption was being displayed in when tapped.
     ///                     Contains a reference to the `editor` RichEditorView to perform actions on.
@@ -32,6 +35,8 @@ public struct RichEditorOptionItem: RichEditorOption {
 
     /// If an `itemImage` is not specified, this is used in display
     public var title: String
+
+    public var tintColor: UIColor?
 
     /// The action to be performed when tapped
     public var handler: ((RichEditorToolbar) -> Void)
@@ -150,6 +155,10 @@ public enum RichEditorDefaultOption: RichEditorOption {
         }
     }
     
+    public var tintColor: UIColor? {
+        return nil
+    }
+
     public func action(_ toolbar: RichEditorToolbar) {
         switch self {
         case .clear: toolbar.editor?.removeFormat()
