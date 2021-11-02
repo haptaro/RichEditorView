@@ -607,6 +607,9 @@ public class RichEditorWebView: WKWebView {
         else if method.hasPrefix("blur") {
             delegate?.richEditorLostFocus?(self)
         }
+        else if method.hasPrefix("selectionchange") {
+            enabledEditingItems()
+        }
         else if method.hasPrefix("action/") {
             runJS("RE.getHtml()") { content in
                 self.contentHTML = content
@@ -643,5 +646,11 @@ public class RichEditorWebView: WKWebView {
     open override func resignFirstResponder() -> Bool {
         blur()
         return true
+    }
+
+    func enabledEditingItems() {
+        runJS("RE.isCommandEnabled('bold')") { content in
+            print(content) // Bool
+        }
     }
 }

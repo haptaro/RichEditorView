@@ -22,6 +22,7 @@ RE.editor = document.getElementById('editor');
 // Not universally supported, but seems to work in iOS 7 and 8
 document.addEventListener("selectionchange", function() {
     RE.backuprange();
+    RE.callback("selectionchange");
 });
 
 //looks specifically for a Range selection and not a Caret selection
