@@ -267,6 +267,10 @@ public class RichEditorWebView: WKWebView {
         runJS("RE.undo()")
     }
     
+    public func scrollTo(height: CGFloat) {
+        runJS("RE.scrollTo(\(height))")
+    }
+
     public func redo() {
         runJS("RE.redo()")
     }
